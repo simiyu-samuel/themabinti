@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // API configuration
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://api.themabinti.com/api';
 
 export const api = axios.create({
   baseURL: API_BASE_URL,
@@ -47,27 +47,57 @@ export const endpoints = {
   },
   services: {
     list: '/services',
+    featured: '/services/featured',
+    categories: '/services/categories',
     show: (id: string) => `/services/${id}`,
     create: '/seller/services',
     update: (id: string) => `/seller/services/${id}`,
     delete: (id: string) => `/seller/services/${id}`,
     myServices: '/seller/services/my',
+    toggle: (id: string) => `/seller/services/${id}/toggle`,
   },
   bookings: {
     create: '/bookings',
     list: '/bookings',
     show: (id: string) => `/bookings/${id}`,
     cancel: (id: string) => `/bookings/${id}/cancel`,
+    confirm: (id: string) => `/bookings/${id}/confirm`,
+    complete: (id: string) => `/bookings/${id}/complete`,
   },
   payments: {
     initiateMpesa: '/payments/mpesa/initiate',
     checkStatus: (id: string) => `/payments/${id}/status`,
     history: '/payments/history',
+    upgradePackage: '/payments/upgrade-package',
+  },
+  profile: {
+    show: '/profile',
+    update: '/profile',
+    uploadAvatar: '/profile/avatar',
+  },
+  blog: {
+    list: '/blog',
+    show: (slug: string) => `/blog/${slug}`,
+    create: '/admin/blog',
+    update: (id: string) => `/admin/blog/${id}`,
+    delete: (id: string) => `/admin/blog/${id}`,
+    toggle: (id: string) => `/admin/blog/${id}/toggle`,
+  },
+  contact: {
+    send: '/contact',
+    list: '/admin/contacts',
+    show: (id: string) => `/admin/contacts/${id}`,
+    respond: (id: string) => `/admin/contacts/${id}/respond`,
   },
   admin: {
     dashboard: '/admin/dashboard',
     users: '/admin/users',
+    userToggle: (id: string) => `/admin/users/${id}/toggle`,
+    userDelete: (id: string) => `/admin/users/${id}`,
     services: '/admin/services',
+    serviceToggle: (id: string) => `/admin/services/${id}/toggle`,
     payments: '/admin/payments',
+    appointments: '/admin/appointments',
+    appointmentUpdate: (id: string) => `/admin/appointments/${id}/status`,
   },
 };

@@ -11,6 +11,11 @@ import { PageLoading } from './components/ui/LoadingSpinner';
 import { HomePage } from './pages/HomePage';
 import { LoginPage } from './pages/auth/LoginPage';
 import { RegisterPage } from './pages/auth/RegisterPage';
+import { ServicesPage } from './pages/ServicesPage';
+import { ServiceDetailsPage } from './pages/ServiceDetailsPage';
+import { ContactPage } from './pages/ContactPage';
+import { BlogListPage } from './pages/blog/BlogListPage';
+import { BlogPostPage } from './pages/blog/BlogPostPage';
 import { useUIStore } from './store/ui';
 import { cn } from './lib/utils';
 
@@ -113,6 +118,10 @@ function App() {
                     <Routes>
                       <Route path="/" element={<HomePage />} />
                       <Route path="/services" element={<ServicesPage />} />
+                      <Route path="/services/:id" element={<ServiceDetailsPage />} />
+                      <Route path="/contact" element={<ContactPage />} />
+                      <Route path="/blog" element={<BlogListPage />} />
+                      <Route path="/blog/:slug" element={<BlogPostPage />} />
                       
                       {/* Protected dashboard routes */}
                       <Route
